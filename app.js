@@ -1,13 +1,17 @@
+/**
+ * Main file of the application.
+ * Initializes the application and starts the server.
+ */
+
 var express = require('express');
 var app = express();
 
-var router = express.Router();
-router.get('/', function(req, res) {
-	res.status(200).send('hello world !');
-});
+//Initialize the application
+var initializers = require('./initializers/initialize')(app, express);
 
-app.use(router);
 
-app.listen(3000, function() {
-	console.log('server running in 3000');
+//starts the server
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+	console.log('Express server listening on port : ' + port);
 });
